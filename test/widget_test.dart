@@ -12,9 +12,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quiz_app/main.dart';
 
 void main() {
-  testWidgets('QuizApp displays splash screen', (WidgetTester tester) async {
+  testWidgets('MyApp displays splash screen', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const QuizApp());
+    await tester.pumpWidget(const MyApp());
 
     // Verify that the splash screen is displayed with the app title.
     expect(find.text('Quiz App'), findsOneWidget);

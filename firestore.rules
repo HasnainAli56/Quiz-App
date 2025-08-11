@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users can only read/write their own data
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Quiz scores are user-specific
+    match /quizScores/{scoreId} {
+      allow read, write: if request.auth != null && 
+        request.auth.uid == resource.data.userId;
+    }
+    
+    // Allow reading quiz questions (public data)
+    match /questions/{questionId} {
+      allow read: if true;
+      allow write: if false; // Only admins can write questions
+    }
+  }
+} 
